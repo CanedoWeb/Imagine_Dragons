@@ -1,5 +1,5 @@
 /* ========================================
-    ESTILOS GERAIS
+    ESTILOS GERAIS (BODY E RESET)
    ======================================== */
 * {
     padding: 0;
@@ -7,58 +7,358 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'OpenSans';
+    src: url('fonts/Open_Sans/OpenSans_Condensed-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('fonts/Open_Sans/OpenSans_Condensed-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('fonts/Open_Sans/OpenSans_Condensed-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('fonts/Open_Sans/OpenSans_Condensed-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DevilBreeze';
+    src: url('fonts/DevilBreeze/Devil\ Breeze\ Demi.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 body {
+    font-family: 'OpenSans', sans-serif;
     width: 100vw;
     background-color: #161616;
     overflow-x: hidden;
-    position: relative;
+}
+
+section {
+    width: 99vw;
+    padding: 200px 90px 100px 90px;
+    border: solid 2px rgba(0, 128, 0, 0.266);
+    display: flex;
+    flex-direction: column;
+}
+
+h1,
+h2 {
+    line-height: 100%;
+    font-family: 'DevilBreeze';
+    color: #ececec;
+    font-weight: 700;
+    font-size: 128px;
+}
+
+p {
+    font-weight: 500;
+    font-size: 28px;
+    color: #e8e8e8;
 }
 
 ul li {
     list-style: none;
 }
 
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 180px;
+}
+
+.title h1 {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title h1 span.left {
+    text-align: left;
+}
+
+.title h1 span.right {
+    text-align: right;
+}
+
+
 
 /* ========================================
-    MENU DESKTOP
+    ANIMAÇÃO - MASK/LOGO
    ======================================== */
+.mask {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url(img/imagine\ dragons\ bg.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    mask-image: url(img/logo.svg);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 98vw;
+    clip-path: circle(150% at 50% 50%);
+    will-change: clip-path;
+    z-index: 1;
+}
+
+button.activate-btn {
+    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translatex(-50%);
+    display: none;
+    opacity: 0;
+    border: none;
+    background: none;
+    font-family: 'DevilBreeze';
+    font-size: 100px;
+    color: #438C98;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+        cursor: pointer;
+}
+
+
+
+/* ========================================
+    CONTAINER E LAYOUT PRINCIPAL 
+   ======================================== */
+.container-pai {
+    position: relative;
+    width: 100%;
+    background-color: #161616;
+    overflow-x: hidden;
+}
+
+
+
+
+/* ========================================
+    CONTEÚDO 
+   ======================================== */
+.conteudo {
+    padding: 0 0;
+    height: auto;
+    position: absolute;
+    top: 0;
+    display: none;
+    pointer-events: none;
+    background-color: #161616;
+}
+
+main {
+    width: 100%;
+}
+
+
+/* ========================================
+    A-BANDA 
+   ======================================== */
+
+.a-banda {
+    padding-top: 100px;
+}
+
+.a-banda article {
+    display: flex;
+    align-items: center;
+    gap: 5vw;
+}
+
+.a-banda article img {
+    width: 50%;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+}
+
+.a-banda article p {
+    width: 50%;
+}
+
+.article-top {
+    margin-bottom: 120px;
+}
+
+
+/* ========================================
+    MUSICAS 
+   ======================================== */
+section.musicas {
+    padding: 200px 90px 100px 90px;
+}
+
+section.musicas .title {
+    position: relative;
+    margin-bottom: 180px;
+}
+
+.container-musicas {
+    gap: 102px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-msc {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.container-msc .data {
+    margin-right: 186px;
+    z-index: 10;
+    padding-left: 40px;
+}
+
+.container-msc .justify {
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 40px;
+}
+
+
+.container-msc span {
+    font-family: 'OpenSans';
+    font-weight: 700;
+    color: #e8e8e8;
+}
+
+.container-msc .nome span {
+    font-family: 'OpenSans';
+    font-size: 32px;
+    font-weight: 700;
+    color: #e8e8e8;
+}
+
+.container-msc .data span,
+.play span {
+    font-family: 'OpenSans';
+    font-size: 16px;
+    font-weight: 800;
+    color: #e8e8e8;
+}
+
+.line {
+    width: 100%;
+    height: 2px;
+    background-color: #3B3B3B;
+    position: absolute;
+    bottom: 20px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.roda {
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: spin 15s linear infinite;
+}
+
+.container-musicas-btn{
+    font-family: 'OpenSans';
+    font-weight: 800;
+    font-size: 24px;
+    color: #e8e8e8;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+/* ========================================
+    HEADER (SITE HEADER)
+   ======================================== */
+header.site-header {
+    font-family: 'Chivo', sans-serif;
+    width: 100%;
+    z-index: 3000;
+}
+
+
+
+
+/* ========================================
+    MENU (DESKTOP E MOBILE) - COLOCADO POR ÚLTIMO
+   ======================================== */
+
 menu.menu {
-    padding: 5px 10px;
-    position: fixed;
-    top: 10px;
-    width: 90%;
-    background-color: rgba(0, 0, 0, 0.34);
-    backdrop-filter: blur(20px);
-    border-radius: 60px;
-    height: 70px;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    border-bottom: solid 2px #3B3B3B;
 }
 
 .menu .navbar {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+
 }
 
 .menu .navbar .nav ul {
+    padding: 30px 0px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 80px;
-}
-
-.menu .navbar .logo h2 {
-    color: white;
+    gap: 7vw;
 }
 
 .menu .navbar .nav ul li a {
     color: #eee;
     position: relative;
     display: inline-block;
+    font-size: 18px;
+    transition: 0.3s ease-out;
 }
 
 .menu .navbar .nav ul li a::after {
@@ -70,7 +370,7 @@ menu.menu {
     bottom: 0;
     left: 0;
     background-color: #eee;
-    transition: 0.2s ease-out;
+    transition: 0.3s ease-out;
     transform-origin: bottom center;
 }
 
@@ -95,9 +395,6 @@ menu.menu {
 }
 
 
-/* ========================================
-    MENU MOBILE
-   ======================================== */
 .navbar-mobile {
     display: none;
 }
@@ -170,10 +467,6 @@ menu.menu {
     right: 0;
 }
 
-
-/* ========================================
-    OVERLAY
-   ======================================== */
 .overlay {
     position: fixed;
     top: 0;
@@ -189,42 +482,6 @@ menu.menu {
     display: block;
 }
 
-
-/* ========================================
-    CONTAINER E LAYOUT PRINCIPAL
-   ======================================== */
-.container-pai {
-    width: 100%;
-    background-color: #161616;
-    overflow-x: hidden;
-    position: relative;
-}
-
-.conteudo {
-    position: absolute;
-    top: 0;
-    display: none;
-    pointer-events: none;
-}
-
-
-/* ========================================
-    ANIMAÇÃO - MASK/LOGO
-   ======================================== */
-.mask {
-    width: 100%;
-    height: 100vh;
-    background-image: url(img/imagine\ dragons\ bg.webp);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-    mask-image: url(img/logo.svg);
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: 98vw;
-    clip-path: circle(150% at 50% 50%);
-    will-change: clip-path;
-}
 
 
 /* ========================================

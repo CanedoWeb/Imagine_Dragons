@@ -1,6 +1,16 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Evita que o navegador restaure a posição do scroll ao recarregar a página
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Garante que a página comece no topo quando carregar (resolve restauração residual)
+window.addEventListener('load', () => {
+    setTimeout(() => window.scrollTo(0, 0), 50);
+});
+
 
 let valorMaskSize = "3000vw"
 
@@ -19,8 +29,7 @@ const tl = gsap.timeline({
         pin: true,
         scrub: 2,
         start: "top top",
-        end: "bottom top",
-        markers: true
+        end: "bottom 15%"
     }
 });
 
@@ -30,24 +39,55 @@ tl.to(".mask", {
     duration: 4
 })
 
-tl.to(".mask", {
-    clipPath: "circle(0% at 50% 50%)",
-    duration: 3
-}, "+=0")
-
-
-tl.set(".conteudo", {
+tl.set(".activate-btn", {
     display: "block",
-    pointerEvents: "none"
-}, "+=0");
+    pointerEvents: "auto"
+}, "-=4");
 
-tl.fromTo(".conteudo", {
+tl.fromTo(".activate-btn", {
+    opacity: 0
+}, {
+    opacity: 1.5,
+    duration: 2
+}, "-=2");
+
+
+const tl2 = gsap.timeline({ paused: true });
+
+tl2.to(".activate-btn", {
+    opacity: 0,
+    duration: 1.5
+});
+
+tl2.to(".mask", {
+    clipPath: "circle(0% at 50% 50%)",
+    duration: 1,
+    ease: "power2.inOut"
+}, "-=1");
+
+tl2.set(".conteudo", {
+    display: "block",
+    pointerEvents: "auto",
+}, "-=1")
+
+tl2.fromTo(".conteudo", {
     opacity: 0
 }, {
     opacity: 1,
-    duration: 1,
-    onComplete: () => gsap.set(".conteudo", { pointerEvents: "auto" })
-}, "+=0");
+    duration: 2,
+    onComplete: () =>
+        gsap.set(".conteudo", { pointerEvents: "auto" })
+}, "-=1");
+
+
+let btnMask = document.getElementById("activate-content");
+
+btnMask.addEventListener("click", () => {
+    tl2.play();
+});
+
+
+
 
 
 // Menu burger (mobile)
@@ -82,6 +122,28 @@ links.forEach(link => {
         btnAbrir.style.display = 'flex'
     })
 })
+
+
+
+const imagens = document.querySelectorAll(".img-sound")
+const audios = document.querySelectorAll("audio")
+
+imagens.forEach(img => {
+    const audio = document.getElementById(img.dataset.audio)
+
+    img.addEventListener("mouseenter", () => {
+        audios.forEach(a => {
+            a.pause();
+            a.currentTime = 0;
+        });
+
+        audio.play();
+    });
+
+    img.addEventListener("mouseleave", () => {
+        audio.pause();
+    });
+});
 
 
 
